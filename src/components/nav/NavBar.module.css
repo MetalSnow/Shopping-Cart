@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  gap: 15px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(88, 111, 72);
+}
+.title {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.listContainer {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.listContainer li,
+.listContainer a {
+  text-decoration: none;
+  list-style: none;
+  color: aliceblue;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  &:hover {
+    color: #eec06c;
+  }
+}
