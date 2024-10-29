@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 function NavBar() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>
-        <Store size={40} color="white" />
-        Demo Store
-      </h1>
+      <Link to="/">
+        <h1 className={styles.title}>
+          <Store size={40} color="white" />
+          Demo Store
+        </h1>
+      </Link>
       <ul className={styles.listContainer}>
         <li>
           <Link to="/">Home</Link>
