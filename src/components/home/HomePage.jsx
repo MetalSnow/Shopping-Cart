@@ -3,14 +3,12 @@ import styles from './HomePage.module.css';
 import picOne from '../../assets/home-pic-one.jpg';
 import picTwo from '../../assets/home-pic-two.jpg';
 import picThree from '../../assets/home-pic-three.jpg';
-import CartButton from '../cart/CartButton';
 
 function HomePage() {
   return (
     <>
       <NavBar />
       <div className={styles.container}>
-        <CartButton />
         <div>
           <p>
             Refresh your wardrobe with our latest collection of everyday

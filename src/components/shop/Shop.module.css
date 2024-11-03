@@ -1,2 +1,57 @@
 .container {
 }
+
+.card {
+  width: 200px;
+  height: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #777777;
+  border: 2px solid lightcoral;
+
+  & input {
+    background-color: aliceblue;
+    border: none;
+    width: 40px;
+    outline: none;
+    color: rgb(101, 40, 40);
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  & input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.inputContainer {
+  display: flex;
+}
+
+.increment {
+  background-color: aliceblue;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+  color: black;
+}
+
+.decrement {
+  background-color: aliceblue;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+  color: black;
+}
