@@ -2,22 +2,35 @@ import { useState } from 'react';
 import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
 
-function CardItem({ product, name }) {
+function CardItem({ image, description, title, price, rating }) {
   const [value, setValue] = useState(0);
 
+  const handleInputValue = (e) => {
+    const newValue = Number(e.target.value);
+    if (newValue >= 0 && newValue <= 99) {
+      setValue(newValue);
+    }
+  };
+
   const handleIncrement = () => {
-    setValue((value) => (value != 20 ? value + 1 : value));
+    setValue(+value + 1);
   };
 
   const handleDecrement = () => {
-    setValue((value) => value && value - 1);
+    setValue(+value && value - 1);
   };
 
   return (
     <div className={styles.card}>
       <div>
-        {product}
-        <p>{name}</p>
+        <img src={image} alt={title} />
+        <p>{title}</p>
+        <p>{description}</p>
+        <p>$ {price}</p>
+        <div>
+          <p>{rating.rate} stars</p>
+          <p>{rating.count} ratings</p>
+        </div>
       </div>
       <div>
         <div className={styles.inputContainer}>
@@ -25,7 +38,14 @@ function CardItem({ product, name }) {
             {' '}
             -{' '}
           </button>
-          <input type="number" value={value} min="0" max="50" />
+          <input
+            type="number"
+            value={value}
+            maxLength={2}
+            onChange={handleInputValue}
+            min="0"
+            max="20"
+          />
           <button className={styles.increment} onClick={handleIncrement}>
             {' '}
             +{' '}
@@ -38,8 +58,11 @@ function CardItem({ product, name }) {
 }
 
 CardItem.propTypes = {
-  product: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.object.isRequired,
 };
 
 export default CardItem;
