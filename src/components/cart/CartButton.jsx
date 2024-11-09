@@ -7,6 +7,7 @@ function CartButton({ onClick }) {
     <button className={styles.button} onClick={onClick}>
       <span>0</span>
       <ShoppingCart size={25} color="white" />
+      <p>Cart</p>
     </button>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
 
-function CardItem({ image, description, title, price, rating }) {
+function CardItem(props) {
   const [value, setValue] = useState(0);
 
   const handleInputValue = (e) => {
@@ -23,13 +23,13 @@ function CardItem({ image, description, title, price, rating }) {
   return (
     <div className={styles.card}>
       <div>
-        <img src={image} alt={title} />
-        <p>{title}</p>
-        <p>{description}</p>
-        <p>$ {price}</p>
+        <img src={props.image} alt={props.title} />
+        <p>{props.title}</p>
+        <p>{props.description}</p>
+        <p>$ {props.price}</p>
         <div>
-          <p>{rating.rate} stars</p>
-          <p>{rating.count} ratings</p>
+          <p>{props.rating.rate} stars</p>
+          <p>{props.rating.count} ratings</p>
         </div>
       </div>
       <div>

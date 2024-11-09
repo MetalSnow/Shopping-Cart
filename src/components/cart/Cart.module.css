@@ -1,7 +1,7 @@
 .button {
   box-sizing: border-box;
   position: fixed;
-  top: 20px;
+  top: 25px;
   right: 6%;
   width: fit-content;
   border: none;
@@ -9,10 +9,10 @@
   align-items: center;
   font-weight: bold;
   font-size: 0.9rem;
-  padding: 10px 13px;
-  gap: 0.5rem;
+  padding: 0px 30px;
+  gap: 0.3rem;
   background-color: black;
-  border-radius: 50%;
+  border-radius: 17px;
   cursor: pointer;
   box-shadow: 1px 1px 6px 2px rgba(0, 0, 0, 0.3);
   z-index: 1;
@@ -24,8 +24,8 @@
     border-radius: 50%;
     color: white;
     position: absolute;
-    bottom: 3px;
-    right: 40px;
+    bottom: 4px;
+    right: 88px;
   }
 }
 

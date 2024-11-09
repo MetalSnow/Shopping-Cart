@@ -16,7 +16,7 @@ vi.mock('./CardItem', () => ({
 }));
 
 describe('Shop Component', () => {
-  it('renders NavBar, CartButton, and CardItem components', () => {
+  it('renders NavBar, CartButton, and CardItem components', async () => {
     render(
       <MemoryRouter>
         <Shop />
@@ -25,10 +25,10 @@ describe('Shop Component', () => {
 
     const navBar = screen.getByText('NavBar');
     const cartButton = screen.getByText('CartButton');
-    const cardItem = screen.getByText('CardItem');
+    const cardItem = await screen.findAllByText('CardItem');
 
     expect(navBar).toBeInTheDocument();
     expect(cartButton).toBeInTheDocument();
-    expect(cardItem).toBeInTheDocument();
+    expect(cardItem.length).toBeGreaterThan(0);
   });
 });
