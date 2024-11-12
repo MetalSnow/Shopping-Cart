@@ -27,12 +27,12 @@ function Shop() {
             <li>shoes</li>
           </ul>
         </aside>
-        <ul style={{ color: 'black' }}>
+        <ul className={styles.listCards}>
           {products.map((product) => (
             <li key={product.id}>
               <CardItem
                 title={product.title}
-                description={product.description}
+                // description={product.description}
                 image={product.image}
                 price={product.price}
                 rating={product.rating}

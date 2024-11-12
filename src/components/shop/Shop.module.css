@@ -1,6 +1,7 @@
 .container {
   display: flex;
   height: 100%;
+  padding: 50px 100px;
 }
 
 .aside {
@@ -11,40 +12,75 @@
   list-style: none;
 }
 
-.card {
-  width: 200px;
-  height: 250px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #777777;
-  border: 2px solid lightcoral;
+.listCards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 20px;
 
-  & img {
-    width: 100px;
-  }
+  & .card {
+    color: black;
+    padding: 20px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 2px solid lightcoral;
+    border-radius: 10px;
+    box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.3);
 
-  & input {
-    background-color: aliceblue;
-    border: none;
-    width: 40px;
-    outline: none;
-    color: #264e74;
-    font-size: 19px;
-    font-weight: bold;
-    text-align: center;
-
-    &:out-of-range {
-      color: red;
+    & img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
     }
-  }
 
-  & input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    & .productSet {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      & div {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+    }
+
+    & .rating {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    & p {
+      text-align: center;
+      margin: 0;
+    }
+
+    & input {
+      background-color: #e2f1ff;
+      border: none;
+      width: 40px;
+      outline: none;
+      color: #264e74;
+      font-size: 19px;
+      font-weight: bold;
+      text-align: center;
+
+      &:out-of-range {
+        color: red;
+      }
+    }
+
+    & input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 }
 
@@ -53,7 +89,7 @@
 }
 
 .increment {
-  background-color: aliceblue;
+  background-color: #e2f1ff;
   border-radius: 0 5px 5px 0;
   border: none;
   font-size: 18px;
@@ -69,7 +105,7 @@
 }
 
 .decrement {
-  background-color: aliceblue;
+  background-color: #e2f1ff;
   border-radius: 5px 0 0 5px;
   border: none;
   font-size: 18px;

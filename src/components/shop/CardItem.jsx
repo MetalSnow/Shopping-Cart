@@ -22,37 +22,40 @@ function CardItem(props) {
 
   return (
     <div className={styles.card}>
-      <div>
-        <img src={props.image} alt={props.title} />
-        <p>{props.title}</p>
-        <p>{props.description}</p>
-        <p>$ {props.price}</p>
+      <img src={props.image} alt={props.title} />
+
+      <p>{props.title}</p>
+      <div className={styles.productSet}>
         <div>
-          <p>{props.rating.rate} stars</p>
-          <p>{props.rating.count} ratings</p>
+          <p>$ {props.price}</p>
+          <div className={styles.rating}>
+            <p>{props.rating.rate} stars</p>
+            <p>{props.rating.count} ratings</p>
+          </div>
+        </div>
+        <div>
+          <div className={styles.inputContainer}>
+            <button className={styles.decrement} onClick={handleDecrement}>
+              {' '}
+              -{' '}
+            </button>
+            <input
+              type="number"
+              value={value}
+              maxLength={2}
+              onChange={handleInputValue}
+              min="0"
+              max="20"
+            />
+            <button className={styles.increment} onClick={handleIncrement}>
+              {' '}
+              +{' '}
+            </button>
+          </div>
+          <button>Add To Cart</button>
         </div>
       </div>
-      <div>
-        <div className={styles.inputContainer}>
-          <button className={styles.decrement} onClick={handleDecrement}>
-            {' '}
-            -{' '}
-          </button>
-          <input
-            type="number"
-            value={value}
-            maxLength={2}
-            onChange={handleInputValue}
-            min="0"
-            max="20"
-          />
-          <button className={styles.increment} onClick={handleIncrement}>
-            {' '}
-            +{' '}
-          </button>
-        </div>
-        <button>Add To Cart</button>
-      </div>
+      {/* <p>{props.description}</p> */}
     </div>
   );
 }
