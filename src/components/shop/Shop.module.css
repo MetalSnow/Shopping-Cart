@@ -1,11 +1,61 @@
 .container {
+  position: relative;
   display: flex;
   height: 100%;
-  padding: 50px 50px;
+  padding: 0px 50px;
 }
 
 .aside {
+  position: sticky;
+  top: 10px;
+  height: 100%;
   color: black;
+  width: 190px;
+
+  & p {
+    font-weight: 500;
+    font-size: 19px;
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    & li {
+      width: 100%;
+      border-bottom: 2px solid lightcoral;
+    }
+
+    & button {
+      text-align: start;
+      cursor: pointer;
+      color: rgb(92, 48, 32);
+      background-color: transparent;
+      border-bottom: 2px solid lightcoral;
+      font-weight: 700;
+      font-size: 14px;
+      will-change: transform;
+      transition: transform 300ms;
+
+      width: 100%;
+      border: none;
+
+      &:hover {
+        color: #cd6c6c;
+        transform: translateX(8px);
+      }
+    }
+
+    & .activeCategory {
+      color: lightcoral;
+      transform: translateX(8px);
+    }
+
+    & .allProducts {
+      color: #115466;
+    }
+  }
 }
 
 :global(li) {
@@ -13,8 +63,10 @@
 }
 
 .listCards {
+  border-left: 1px solid #c2c2c2;
   flex: 1;
-  padding: 20px 60px;
+  margin-top: 0;
+  padding: 50px 60px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 20px;
@@ -42,7 +94,7 @@
       & .tooltiptext {
         visibility: hidden;
         opacity: 0;
-        width: 200px;
+        width: 300px;
         font-weight: 400;
         font-size: 16px;
         background-color: white;
