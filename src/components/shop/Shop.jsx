@@ -32,7 +32,7 @@ function Shop() {
             <li key={product.id}>
               <CardItem
                 title={product.title}
-                // description={product.description}
+                description={product.description}
                 image={product.image}
                 price={product.price}
                 rating={product.rating}

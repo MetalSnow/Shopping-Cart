@@ -23,8 +23,11 @@ function CardItem(props) {
   return (
     <div className={styles.card}>
       <img src={props.image} alt={props.title} />
+      <div className={styles.tooltip}>
+        <p>{props.title}</p>
+        <span className={styles.tooltiptext}>{props.description}</span>
+      </div>
 
-      <p>{props.title}</p>
       <div className={styles.productSet}>
         <div>
           <p>$ {props.price}</p>
@@ -55,7 +58,6 @@ function CardItem(props) {
           <button>Add To Cart</button>
         </div>
       </div>
-      {/* <p>{props.description}</p> */}
     </div>
   );
 }
