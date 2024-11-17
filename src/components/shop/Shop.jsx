@@ -15,7 +15,6 @@ function Shop() {
     fetch(url, { mode: 'cors' })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInitialProducts(data);
         setProducts(data);
       });

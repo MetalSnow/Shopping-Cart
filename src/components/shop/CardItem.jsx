@@ -21,7 +21,7 @@ function CardItem(props) {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-testid="card-item-container">
       <img src={props.image} alt={props.title} />
       <div className={styles.tooltip}>
         <p>{props.title}</p>

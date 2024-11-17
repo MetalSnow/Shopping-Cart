@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Shop Component > filters products by selected category 1`] = `
+<div>
+  <div>
+    NavBar
+  </div>
+  <div
+    class="_container_64976f"
+  >
+    <div>
+      CartButton
+    </div>
+    <aside
+      class="_aside_64976f"
+    >
+      <p>
+        Category
+      </p>
+      <ul>
+        <li>
+          <button
+            class="_allProducts_64976f"
+          >
+            Show all products
+          </button>
+        </li>
+      </ul>
+    </aside>
+    <ul
+      class="_listCards_64976f"
+    >
+      <p
+        style="text-align: center; font-size: 18px;"
+      >
+        Loading...
+      </p>
+    </ul>
+  </div>
+</div>
+`;
