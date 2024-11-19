@@ -1,4 +1,5 @@
 .button {
+  opacity: 0.8;
   box-sizing: border-box;
   position: fixed;
   top: 25px;
@@ -8,28 +9,56 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 0.9rem;
-  padding: 0px 30px;
+  font-size: 1rem;
+  padding: 0px 22px;
+  height: 45px;
   gap: 0.3rem;
-  color: white;
-  background-color: black;
-  border-radius: 17px;
+  color: black;
+  background-color: var(--primary-yellow);
+  border-radius: 50px;
   cursor: pointer;
   box-shadow: 1px 1px 6px 2px rgba(0, 0, 0, 0.3);
   z-index: 1;
+  border: 2px black solid;
+
+  & p {
+    position: absolute;
+    color: black;
+    visibility: hidden; /* Remove from layout without leaving space */
+    opacity: 0; /* Fully transparent */
+    transform: translateY(10px); /* Push it slightly down */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Delay hiding visibility after fading */
+  }
+
+  &:hover p {
+    position: static;
+    visibility: visible; /* Show it immediately on hover */
+    opacity: 1; /* Smooth fade-in */
+    transform: translateY(0); /* Move back to original position */
+    transition: opacity 0.5s ease, transform 0.5s ease visibility 0s 0.5s; /* No delay when showing */
+  }
 
   & span {
-    background-color: rgb(29, 52, 79);
-    font-size: 14px;
-    padding: 2px 5px;
-    border-radius: 50%;
-    color: white;
+    font-size: 17px;
+    padding: 2.5px 5px 2px 5px;
+    color: black;
     position: absolute;
     bottom: 4px;
-    right: 88px;
+    right: 42px;
+  }
+
+  &:hover span {
+    right: 79px;
+  }
+
+  &:hover {
+    opacity: 1;
   }
 }
 
-.button:hover {
-  background-color: #000000bd;
+@media (max-width: 1200px) {
+  .button {
+    top: 15%;
+    right: 35px;
+  }
 }

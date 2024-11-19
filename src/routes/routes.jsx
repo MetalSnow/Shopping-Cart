@@ -9,7 +9,7 @@ const routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: 'shop',
+    path: 'shop/:name?',
     element: <Shop />,
   },
 ];

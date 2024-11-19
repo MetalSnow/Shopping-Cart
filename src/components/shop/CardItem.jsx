@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
+import { CirclePlus, Star } from 'lucide-react';
 
 function CardItem(props) {
   const [value, setValue] = useState(0);
@@ -30,9 +31,12 @@ function CardItem(props) {
 
       <div className={styles.productSet}>
         <div>
-          <p>$ {props.price}</p>
+          <p className={styles.price}>$ {props.price}</p>
           <div className={styles.rating}>
-            <p>{props.rating.rate} stars</p>
+            <p className={styles.stars}>
+              {props.rating.rate}{' '}
+              <Star size={18} strokeWidth={2} color="black" />
+            </p>
             <p>{props.rating.count} ratings</p>
           </div>
         </div>
@@ -55,7 +59,10 @@ function CardItem(props) {
               +{' '}
             </button>
           </div>
-          <button>Add To Cart</button>
+          <button className={styles.addToCartBtn}>
+            <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

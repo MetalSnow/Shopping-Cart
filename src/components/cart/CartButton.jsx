@@ -6,7 +6,7 @@ function CartButton({ onClick }) {
   return (
     <button className={styles.button} onClick={onClick}>
       <span>0</span>
-      <ShoppingCart size={25} color="white" />
+      <ShoppingCart size={25} color="black" strokeWidth={2.4} />
       <p>Cart</p>
     </button>
   );

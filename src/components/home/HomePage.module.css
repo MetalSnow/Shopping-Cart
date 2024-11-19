@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 3rem;
   padding: 60px;
-  background: linear-gradient(to bottom, #ffffff, #d3e8d3, #9198e5);
+  background: linear-gradient(to bottom, #ffffff, #ffd7d7, #f08080);
 
   & div {
     display: flex;
