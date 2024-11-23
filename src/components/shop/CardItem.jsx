@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
-import { CirclePlus, Star } from 'lucide-react';
+import { CircleCheckBig, CirclePlus, Star } from 'lucide-react';
 
 function CardItem(props) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
+  const [btnContent, setBtnContent] = useState(
+    <>
+      <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
+      Add To Cart
+    </>
+  );
 
   const handleInputValue = (e) => {
     const newValue = Number(e.target.value);
@@ -19,6 +25,16 @@ function CardItem(props) {
 
   const handleDecrement = () => {
     setValue(+value && value - 1);
+  };
+
+  const handleAddBtn = (event) => {
+    event.target.className = styles.addedToCartBtn;
+    setBtnContent(
+      <>
+        <CircleCheckBig size={18} strokeWidth={1.7} absoluteStrokeWidth />
+        Added to cart
+      </>
+    );
   };
 
   return (
@@ -59,9 +75,8 @@ function CardItem(props) {
               +{' '}
             </button>
           </div>
-          <button className={styles.addToCartBtn}>
-            <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
-            Add To Cart
+          <button className={styles.addToCartBtn} onClick={handleAddBtn}>
+            {btnContent}
           </button>
         </div>
       </div>

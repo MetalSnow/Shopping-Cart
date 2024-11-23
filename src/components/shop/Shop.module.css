@@ -166,7 +166,7 @@
     & input {
       background-color: #e2f1ff;
       border: none;
-      width: 61px;
+      width: 73px;
       outline: none;
       color: #264e74;
       font-size: 19px;
@@ -183,26 +183,32 @@
       -webkit-appearance: none;
       margin: 0;
     }
-
-    & .addToCartBtn {
-      padding: 7px 12px;
-      color: white;
-      font-weight: 600;
-      background-color: rgb(204, 65, 65);
-      display: flex;
-      border: none;
-      align-items: center;
-      border-radius: 6px;
-      gap: 4px;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
   }
+}
+
+.addToCartBtn {
+  width: 132px;
+  padding: 7px 12px;
+  color: white;
+  font-weight: 600;
+  background-color: rgb(204, 65, 65);
+  display: flex;
+  border: none;
+  align-items: center;
+  border-radius: 6px;
+  gap: 4px;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.addedToCartBtn {
+  composes: addToCartBtn;
+  background-color: green;
 }
 
 :global(.lucide.lucide-loader-circle) {

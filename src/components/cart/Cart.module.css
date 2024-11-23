@@ -24,18 +24,18 @@
   & p {
     position: absolute;
     color: black;
-    visibility: hidden; /* Remove from layout without leaving space */
-    opacity: 0; /* Fully transparent */
-    transform: translateY(10px); /* Push it slightly down */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Delay hiding visibility after fading */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   &:hover p {
     position: static;
-    visibility: visible; /* Show it immediately on hover */
-    opacity: 1; /* Smooth fade-in */
-    transform: translateY(0); /* Move back to original position */
-    transition: opacity 0.5s ease, transform 0.5s ease visibility 0s 0.5s; /* No delay when showing */
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease visibility 0s 0.5s;
   }
 
   & span {
