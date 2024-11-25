@@ -1,4 +1,7 @@
+/* Cart Button */
 .button {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
   opacity: 0.8;
   box-sizing: border-box;
   position: fixed;
@@ -8,7 +11,6 @@
   border: none;
   display: flex;
   align-items: center;
-  font-weight: bold;
   font-size: 1rem;
   padding: 0px 22px;
   height: 45px;
@@ -64,5 +66,61 @@
   .button {
     top: 15%;
     right: 35px;
+  }
+}
+
+/* Check Out */
+
+.mainContainer {
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  & .itemsContainer {
+    padding: 60px 100px;
+
+    & header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      & h1 {
+        padding: 0;
+        padding-left: 20px;
+        border-left: 2px solid gray;
+        font-size: 27px;
+        color: #494949;
+      }
+    }
+
+    & .cartItems {
+      & ul {
+        & li {
+          display: flex;
+        }
+      }
+      & img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  & .subTotal {
+    & button {
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: #494949;
+    }
   }
 }

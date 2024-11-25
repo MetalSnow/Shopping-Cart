@@ -14,6 +14,7 @@ function Shop() {
   const [products, setProducts] = useState(null);
   const [activeCategory, setActiveCategory] = useState('');
   const [counter, setCounter] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const navigate = useNavigate();
   const { name } = useParams();
@@ -50,74 +51,84 @@ function Shop() {
 
   return (
     <>
-      <NavBar />
       {!name ? (
-        <div className={styles.container}>
-          <CartButton
-            onClick={() => name !== 'cart' && navigate('cart')}
-            counter={counter}
-          />
-          <aside className={styles.aside}>
-            <p>Category</p>
-            <ul>
-              {uniqueCategories.map((category, index) => {
-                const categoryName =
-                  category.charAt(0).toUpperCase() + category.slice(1);
+        <>
+          <NavBar />
+          <div className={styles.container}>
+            <CartButton
+              onClick={() => name !== 'cart' && navigate('cart')}
+              counter={counter}
+            />
+            <aside className={styles.aside}>
+              <p>Category</p>
+              <ul>
+                {uniqueCategories.map((category, index) => {
+                  const categoryName =
+                    category.charAt(0).toUpperCase() + category.slice(1);
 
-                return (
-                  <li key={index}>
-                    <button
-                      onClick={handleCategory}
-                      className={
-                        activeCategory === categoryName
-                          ? styles.activeCategory
-                          : ''
-                      }
-                    >
-                      {categoryName}
-                    </button>
-                  </li>
-                );
-              })}
-              <li>
-                <button onClick={handleCategory} className={styles.allProducts}>
-                  Show all products
-                </button>
-              </li>
-            </ul>
-          </aside>
-          <ul className={styles.listCards}>
-            {products ? (
-              products.map((product) => (
-                <li key={product.id}>
-                  <CardItem
-                    title={product.title}
-                    description={product.description}
-                    image={product.image}
-                    price={product.price}
-                    rating={product.rating}
-                    setCounter={setCounter}
-                  />
+                  return (
+                    <li key={index}>
+                      <button
+                        onClick={handleCategory}
+                        className={
+                          activeCategory === categoryName
+                            ? styles.activeCategory
+                            : ''
+                        }
+                      >
+                        {categoryName}
+                      </button>
+                    </li>
+                  );
+                })}
+                <li>
+                  <button
+                    onClick={handleCategory}
+                    className={styles.allProducts}
+                  >
+                    Show all products
+                  </button>
                 </li>
-              ))
-            ) : (
-              <LoaderCircle size={42} color="#393432" strokeWidth={2.8} />
-            )}
-          </ul>
-        </div>
+              </ul>
+            </aside>
+            <ul className={styles.listCards}>
+              {products ? (
+                products.map((product) => (
+                  <li key={product.id}>
+                    <CardItem
+                      id={product.id}
+                      title={product.title}
+                      description={product.description}
+                      image={product.image}
+                      price={product.price}
+                      rating={product.rating}
+                      setCounter={setCounter}
+                      setSelectedItems={setSelectedItems}
+                    />
+                  </li>
+                ))
+              ) : (
+                <LoaderCircle size={42} color="#393432" strokeWidth={2.8} />
+              )}
+            </ul>
+          </div>
+        </>
       ) : name === 'cart' ? (
-        <Cart />
+        <Cart selectedItems={selectedItems} />
       ) : (
-        <div
-          style={{
-            textAlign: 'center',
-            alignContent: 'center',
-            height: '50vh',
-          }}
-        >
-          <h1>Page Not Found</h1>
-          <p>The page you are looking for does not exist.</p>
-        </div>
+        <>
+          <NavBar />
+          <div
+            style={{
+              textAlign: 'center',
+              alignContent: 'center',
+              height: '50vh',
+            }}
+          >
+            <h1>Page Not Found</h1>
+            <p>The page you are looking for does not exist.</p>
+          </div>
+        </>
       )}
     </>
   );

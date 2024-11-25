@@ -24,8 +24,17 @@ function CardItem(props) {
 
   const handleAddBtn = (event) => {
     if (event.target.className !== styles.addedToCartBtn) {
-      props.setCounter((counter) => counter + 1);
+      const itemObj = {
+        id: props.id,
+        title: props.title,
+        image: props.image,
+        quantity: value,
+        price: props.price,
+      };
 
+      props.setSelectedItems((selectedItems) => [...selectedItems, itemObj]);
+
+      props.setCounter((counter) => counter + 1);
       event.target.className = styles.addedToCartBtn;
 
       setBtnContent(
@@ -92,12 +101,14 @@ function CardItem(props) {
 }
 
 CardItem.propTypes = {
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   price: PropTypes.number.isRequired,
   rating: PropTypes.object.isRequired,
   setCounter: PropTypes.func.isRequired,
+  setSelectedItems: PropTypes.func.isRequired,
 };
 
 export default CardItem;

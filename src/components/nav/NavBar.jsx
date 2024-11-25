@@ -7,7 +7,7 @@ function NavBar() {
     <div className={styles.container}>
       <Link to="/">
         <h1 className={styles.title}>
-          <Store size={40} color="white" />
+          <Store size={38} color="white" />
           Demo Store
         </h1>
       </Link>

@@ -1,4 +1,5 @@
 .container {
+  font-family: 'Nunito', sans-serif;
   position: relative;
   display: flex;
   gap: 15px;
