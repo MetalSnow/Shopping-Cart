@@ -13,6 +13,7 @@ function Shop() {
   const [initialProducts, setInitialProducts] = useState([]);
   const [products, setProducts] = useState(null);
   const [activeCategory, setActiveCategory] = useState('');
+  const [counter, setCounter] = useState(0);
 
   const navigate = useNavigate();
   const { name } = useParams();
@@ -52,7 +53,10 @@ function Shop() {
       <NavBar />
       {!name ? (
         <div className={styles.container}>
-          <CartButton onClick={() => name !== 'cart' && navigate('cart')} />
+          <CartButton
+            onClick={() => name !== 'cart' && navigate('cart')}
+            counter={counter}
+          />
           <aside className={styles.aside}>
             <p>Category</p>
             <ul>
@@ -92,6 +96,7 @@ function Shop() {
                     image={product.image}
                     price={product.price}
                     rating={product.rating}
+                    setCounter={setCounter}
                   />
                 </li>
               ))

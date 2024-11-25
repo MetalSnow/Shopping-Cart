@@ -5,12 +5,7 @@ import { CircleCheckBig, CirclePlus, Star } from 'lucide-react';
 
 function CardItem(props) {
   const [value, setValue] = useState(1);
-  const [btnContent, setBtnContent] = useState(
-    <>
-      <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
-      Add To Cart
-    </>
-  );
+  const [btnContent, setBtnContent] = useState('');
 
   const handleInputValue = (e) => {
     const newValue = Number(e.target.value);
@@ -28,13 +23,18 @@ function CardItem(props) {
   };
 
   const handleAddBtn = (event) => {
-    event.target.className = styles.addedToCartBtn;
-    setBtnContent(
-      <>
-        <CircleCheckBig size={18} strokeWidth={1.7} absoluteStrokeWidth />
-        Added to cart
-      </>
-    );
+    if (event.target.className !== styles.addedToCartBtn) {
+      props.setCounter((counter) => counter + 1);
+
+      event.target.className = styles.addedToCartBtn;
+
+      setBtnContent(
+        <>
+          <CircleCheckBig size={18} strokeWidth={1.7} absoluteStrokeWidth />
+          Added to cart
+        </>
+      );
+    }
   };
 
   return (
@@ -76,7 +76,14 @@ function CardItem(props) {
             </button>
           </div>
           <button className={styles.addToCartBtn} onClick={handleAddBtn}>
-            {btnContent}
+            {!btnContent ? (
+              <>
+                <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
+                Add To Cart
+              </>
+            ) : (
+              btnContent
+            )}
           </button>
         </div>
       </div>
@@ -90,6 +97,7 @@ CardItem.propTypes = {
   description: PropTypes.string,
   price: PropTypes.number.isRequired,
   rating: PropTypes.object.isRequired,
+  setCounter: PropTypes.func.isRequired,
 };
 
 export default CardItem;

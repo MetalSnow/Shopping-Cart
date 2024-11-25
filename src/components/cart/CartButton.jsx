@@ -2,10 +2,10 @@ import { ShoppingCart } from 'lucide-react';
 import styles from './Cart.module.css';
 import PropTypes from 'prop-types';
 
-function CartButton({ onClick }) {
+function CartButton({ onClick, counter }) {
   return (
     <button className={styles.button} onClick={onClick}>
-      <span>0</span>
+      <span>{counter}</span>
       <ShoppingCart size={25} color="black" strokeWidth={2.4} />
       <p>Cart</p>
     </button>
@@ -14,6 +14,7 @@ function CartButton({ onClick }) {
 
 CartButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  counter: PropTypes.number.isRequired,
 };
 
 export default CartButton;
