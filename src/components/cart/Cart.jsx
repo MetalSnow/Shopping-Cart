@@ -1,9 +1,11 @@
 import { MoveLeft, ShoppingBag } from 'lucide-react';
 import styles from './Cart.module.css';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
-function Cart({ selectedItems }) {
+function Cart() {
+  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
   return (
     <section className={styles.mainContainer}>
@@ -14,7 +16,7 @@ function Cart({ selectedItems }) {
         </header>
         <div className={styles.cartItems}>
           <ul>
-            {selectedItems.map((item) => (
+            {cart.map((item) => (
               <li key={item.id}>
                 <img src={item.image} alt={item.title} />
                 <p>{item.title}</p>
@@ -35,9 +37,5 @@ function Cart({ selectedItems }) {
     </section>
   );
 }
-
-Cart.propTypes = {
-  selectedItems: PropTypes.array.isRequired,
-};
 
 export default Cart;

@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
 import { CircleCheckBig, CirclePlus, Star } from 'lucide-react';
+import { CartContext } from '../../context/CartContext';
 
 function CardItem(props) {
   const [value, setValue] = useState(1);
-  const [btnContent, setBtnContent] = useState(
-    <>
-      <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
-      Add To Cart
-    </>
-  );
+  const { cart, addToCart } = useContext(CartContext);
+
+  const isAdded = cart.some((item) => item.id === props.id);
 
   const handleInputValue = (e) => {
     const newValue = Number(e.target.value);
@@ -19,41 +17,16 @@ function CardItem(props) {
     }
   };
 
-  const handleIncrement = () =>
-    setValue((prevValue) => Math.min(prevValue + 1, 99));
+  const handleAddBtn = () => {
+    const itemObj = {
+      id: props.id,
+      title: props.title,
+      image: props.image,
+      quantity: value,
+      price: props.price,
+    };
 
-  const handleDecrement = () =>
-    setValue((prevValue) => Math.max(prevValue - 1, 0));
-
-  const handleAddBtn = (event) => {
-    if (event.target.className !== styles.addedToCartBtn) {
-      const itemObj = {
-        id: props.id,
-        title: props.title,
-        image: props.image,
-        quantity: value,
-        price: props.price,
-        isAdded: true,
-      };
-
-      event.target.className = styles.addedToCartBtn;
-
-      setBtnContent(
-        <>
-          <CircleCheckBig size={18} strokeWidth={1.7} absoluteStrokeWidth />
-          Added to cart
-        </>
-      );
-
-      props.setSelectedItems((selectedItems) => {
-        if (selectedItems.some((item) => item.id === props.id)) {
-          return selectedItems;
-        }
-        return [...selectedItems, itemObj];
-      });
-
-      props.setCounter((counter) => counter + 1);
-    }
+    addToCart(itemObj);
   };
 
   return (
@@ -77,7 +50,10 @@ function CardItem(props) {
         </div>
         <div>
           <div className={styles.inputContainer}>
-            <button className={styles.decrement} onClick={handleDecrement}>
+            <button
+              className={styles.decrement}
+              onClick={() => setValue((prev) => Math.max(prev - 1, 1))}
+            >
               {' '}
               -{' '}
             </button>
@@ -85,16 +61,37 @@ function CardItem(props) {
               type="number"
               value={value}
               onChange={handleInputValue}
-              min="0"
+              min="1"
               max="20"
             />
-            <button className={styles.increment} onClick={handleIncrement}>
+            <button
+              className={styles.increment}
+              onClick={() => setValue((prev) => Math.min(prev + 1, 99))}
+            >
               {' '}
               +{' '}
             </button>
           </div>
-          <button className={styles.addToCartBtn} onClick={handleAddBtn}>
-            {btnContent}
+          <button
+            className={isAdded ? styles.addedToCartBtn : styles.addToCartBtn}
+            onClick={handleAddBtn}
+            disabled={isAdded}
+          >
+            {isAdded ? (
+              <>
+                <CircleCheckBig
+                  size={18}
+                  strokeWidth={1.7}
+                  absoluteStrokeWidth
+                />
+                Added to cart
+              </>
+            ) : (
+              <>
+                <CirclePlus size={18} strokeWidth={1.7} absoluteStrokeWidth />
+                Add To Cart
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -109,9 +106,6 @@ CardItem.propTypes = {
   description: PropTypes.string,
   price: PropTypes.number.isRequired,
   rating: PropTypes.object.isRequired,
-  setCounter: PropTypes.func.isRequired,
-  setSelectedItems: PropTypes.func.isRequired,
-  selectedItems: PropTypes.array.isRequired,
 };
 
 export default CardItem;

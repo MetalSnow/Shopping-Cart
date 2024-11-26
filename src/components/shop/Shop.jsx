@@ -6,6 +6,8 @@ import styles from './Shop.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cart from '../cart/Cart';
 import { LoaderCircle } from 'lucide-react';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
 const url = 'https://fakestoreapi.com/products';
 
@@ -13,8 +15,7 @@ function Shop() {
   const [initialProducts, setInitialProducts] = useState([]);
   const [products, setProducts] = useState(null);
   const [activeCategory, setActiveCategory] = useState('');
-  const [counter, setCounter] = useState(0);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const cart = useContext(CartContext);
 
   const navigate = useNavigate();
   const { name } = useParams();
@@ -57,7 +58,7 @@ function Shop() {
           <div className={styles.container}>
             <CartButton
               onClick={() => name !== 'cart' && navigate('cart')}
-              counter={counter}
+              counter={cart.counter}
             />
             <aside className={styles.aside}>
               <p>Category</p>
@@ -102,8 +103,6 @@ function Shop() {
                       image={product.image}
                       price={product.price}
                       rating={product.rating}
-                      setCounter={setCounter}
-                      setSelectedItems={setSelectedItems}
                     />
                   </li>
                 ))
@@ -114,7 +113,7 @@ function Shop() {
           </div>
         </>
       ) : name === 'cart' ? (
-        <Cart selectedItems={selectedItems} />
+        <Cart />
       ) : (
         <>
           <NavBar />
