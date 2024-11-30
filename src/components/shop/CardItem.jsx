@@ -3,19 +3,13 @@ import styles from './Shop.module.css';
 import PropTypes from 'prop-types';
 import { CircleCheckBig, CirclePlus, Star } from 'lucide-react';
 import { CartContext } from '../../context/CartContext';
+import CounterInput from './CounterInput';
 
 function CardItem(props) {
   const [value, setValue] = useState(1);
   const { cart, addToCart } = useContext(CartContext);
 
   const isAdded = cart.some((item) => item.id === props.id);
-
-  const handleInputValue = (e) => {
-    const newValue = Number(e.target.value);
-    if (newValue >= 0 && newValue <= 99) {
-      setValue(newValue);
-    }
-  };
 
   const handleAddBtn = () => {
     const itemObj = {
@@ -49,29 +43,7 @@ function CardItem(props) {
           </div>
         </div>
         <div>
-          <div className={styles.inputContainer}>
-            <button
-              className={styles.decrement}
-              onClick={() => setValue((prev) => Math.max(prev - 1, 1))}
-            >
-              {' '}
-              -{' '}
-            </button>
-            <input
-              type="number"
-              value={value}
-              onChange={handleInputValue}
-              min="1"
-              max="20"
-            />
-            <button
-              className={styles.increment}
-              onClick={() => setValue((prev) => Math.min(prev + 1, 99))}
-            >
-              {' '}
-              +{' '}
-            </button>
-          </div>
+          <CounterInput value={value} setValue={setValue} />
           <button
             className={isAdded ? styles.addedToCartBtn : styles.addToCartBtn}
             onClick={handleAddBtn}

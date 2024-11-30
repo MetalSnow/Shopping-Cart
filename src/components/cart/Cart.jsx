@@ -3,10 +3,13 @@ import styles from './Cart.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import CounterInput from '../shop/CounterInput';
 
 function Cart() {
   const { cart } = useContext(CartContext);
   const navigate = useNavigate();
+  const { values } = useContext(CartContext);
+
   return (
     <section className={styles.mainContainer}>
       <div className={styles.itemsContainer}>
@@ -16,18 +19,26 @@ function Cart() {
         </header>
         <div className={styles.cartItems}>
           <ul>
-            {cart.map((item) => (
-              <li key={item.id}>
-                <img src={item.image} alt={item.title} />
-                <p>{item.title}</p>
-                <button>increment {item.quantity}</button>
-                <p>${item.price}</p>
-              </li>
-            ))}
+            {cart.map((item) => {
+              const obj = values.find(
+                (value) => value.id == item.id && value.quantity
+              );
+              return (
+                <li key={item.id}>
+                  <img src={item.image} alt={item.title} />
+                  <p>{item.title}</p>
+                  <CounterInput value={obj.quantity} />
+                  <p>${item.price}</p>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className={styles.subTotal}>
-          <button onClick={() => navigate(-1)} className={styles.goBackBtn}>
+          <button
+            onClick={() => navigate('/shop')}
+            className={styles.goBackBtn}
+          >
             <MoveLeft size={25} color="black" strokeWidth={2} />
             Back To Shop
           </button>

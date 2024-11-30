@@ -162,27 +162,6 @@
         font-weight: 500;
       }
     }
-
-    & input {
-      background-color: #e2f1ff;
-      border: none;
-      width: 73px;
-      outline: none;
-      color: #264e74;
-      font-size: 19px;
-      font-weight: bold;
-      text-align: center;
-
-      &:out-of-range {
-        color: red;
-      }
-    }
-
-    & input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
   }
 }
 
@@ -230,6 +209,27 @@
 .inputContainer {
   display: flex;
   justify-content: center;
+
+  & input {
+    background-color: #e2f1ff;
+    border: none;
+    width: 73px;
+    outline: none;
+    color: #264e74;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+
+    &:out-of-range {
+      color: red;
+    }
+  }
+
+  & input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .increment {
