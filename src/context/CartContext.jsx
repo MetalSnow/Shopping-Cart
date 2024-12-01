@@ -15,12 +15,18 @@ export function CartProvider({ children }) {
       { id: item.id, quantity: item.quantity },
     ]);
     setCounter((prevCounter) => prevCounter + 1);
+  };
 
-    console.log(values);
+  const removeFromCart = (item) => {
+    const newCart = cart.filter((product) => product.id !== item.id);
+    setCart(newCart);
+    setCounter(newCart.length);
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, counter, values }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, counter, values, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );
