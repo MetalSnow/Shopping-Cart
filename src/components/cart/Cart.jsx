@@ -1,4 +1,10 @@
-import { MoveLeft, ShoppingBag, X } from 'lucide-react';
+import {
+  CreditCard,
+  MoveLeft,
+  ShoppingBag,
+  UserRoundPen,
+  X,
+} from 'lucide-react';
 import styles from './Cart.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -9,6 +15,11 @@ function Cart() {
   const navigate = useNavigate();
   const { cart, values, removeFromCart } = useContext(CartContext);
 
+  const subtotal = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
     <section className={styles.mainContainer}>
       <div className={styles.itemsContainer}>
@@ -18,7 +29,7 @@ function Cart() {
         </header>
         <div className={styles.cartItems}>
           <ul>
-            {cart ? (
+            {cart.length === 0 ? (
               <p className={styles.emptyCart}>Your Cart is Empty</p>
             ) : (
               cart.map((item) => {
@@ -53,9 +64,51 @@ function Cart() {
             <MoveLeft size={25} color="black" strokeWidth={2} />
             Back To Shop
           </button>
+          <p>
+            Subtotal: <span>$ {subtotal}</span>
+          </p>
         </div>
       </div>
-      <div className={styles.checkoutContainer}></div>
+      <div className={styles.checkoutContainer}>
+        <div>
+          <h2>
+            Personal Info <UserRoundPen />
+          </h2>
+          <label htmlFor="fullName">
+            Full Name
+            <input type="text" id="fullName" />
+          </label>
+          <label htmlFor="address">
+            Address
+            <input type="text" id="address" />
+          </label>
+          <label htmlFor="phoneNumber">
+            Phone Number
+            <input type="phone" id="phoneNumber" />
+          </label>
+          <h2>
+            Card Details <CreditCard />
+          </h2>
+          <label htmlFor="cardNumber">
+            Card Number
+            <input type="text" id="cardNumber" />
+          </label>
+          <label htmlFor="expiryDate" className={styles.expiryDate}>
+            Expiry Date
+            <p>
+              <input type="number" maxLength="2" placeholder="MM" />
+              <span>/</span>
+              <input type="number" maxLength="2" placeholder="DD" />
+              <span>/</span>
+              <input type="number" maxLength="3" placeholder="YYYY" />
+            </p>
+          </label>
+          <label htmlFor="cvv">
+            CVV
+            <input type="phone" id="cvv" />
+          </label>
+        </div>
+      </div>
     </section>
   );
 }

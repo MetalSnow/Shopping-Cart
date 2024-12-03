@@ -78,8 +78,8 @@
   width: 100%;
 
   & .itemsContainer {
-    flex: 0.6;
-    padding: 60px 100px;
+    flex: 0.7;
+    padding: 20px 100px 50px 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -112,6 +112,7 @@
         gap: 1.5rem;
 
         & li {
+          font-weight: 500;
           position: relative;
           display: flex;
           align-items: center;
@@ -173,6 +174,10 @@
   }
 
   & .subTotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     & button {
       font-family: 'Nunito', sans-serif;
       cursor: pointer;
@@ -181,9 +186,102 @@
       align-items: center;
       gap: 20px;
       border: none;
-      font-size: 14px;
       font-weight: 700;
       color: #494949;
+    }
+
+    & p {
+      margin-right: 3rem;
+      font-size: 15px;
+      color: #373737;
+      font-weight: 600;
+
+      & span {
+        margin-left: 10px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  & .checkoutContainer {
+    flex: 0.4;
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #3e3e3e, #161616);
+    padding: 20px;
+    box-shadow: -5px 0 17px 5px rgba(44, 44, 44, 0.3);
+    overflow: hidden;
+    color: white;
+    padding: 20px;
+
+    & div {
+      padding: 0px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+
+      & h2 {
+        display: flex;
+        color: var(--primary-yellow);
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      & label {
+        color: rgb(205, 205, 205);
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        & input {
+          font-weight: 500;
+          font-size: 17px;
+          color: white;
+          outline: none;
+          border: none;
+          padding: 5px 2px;
+          border-bottom: 1px solid white;
+          background: transparent;
+        }
+
+        & input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+
+          &input[type='number'] {
+            -moz-appearance: textfield;
+          }
+        }
+
+        & p {
+          margin: 0;
+        }
+      }
+
+      & .expiryDate {
+        display: flex;
+        flex-direction: column;
+        align-items: first baseline;
+        gap: 8px;
+
+        & input {
+          width: 50px;
+          margin-right: 5px;
+          color: white;
+          text-align: center;
+          font-size: 16px;
+          outline: none;
+        }
+
+        & span {
+          color: white;
+          font-size: 18px;
+        }
+
+        & input:focus {
+          border-bottom: 2px solid yellow;
+        }
+      }
     }
   }
 }
