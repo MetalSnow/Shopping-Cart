@@ -78,12 +78,16 @@
   width: 100%;
 
   & .itemsContainer {
+    flex: 0.6;
     padding: 60px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
 
     & header {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 20px;
 
       & h1 {
@@ -96,15 +100,74 @@
     }
 
     & .cartItems {
+      padding: 0 70px 0 0;
+      overflow-x: hidden;
+      flex: 1;
+      scrollbar-color: #9d9d9d white;
+      scrollbar-width: thin;
+
       & ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
         & li {
+          position: relative;
           display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 3.2rem;
+          padding: 10px 20px;
+          border-radius: 8px 0 0 8px;
+          background-color: #f2f1f1;
+
+          & .title {
+            width: 200px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+
+          & .imgContainer {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: white;
+
+            & img {
+              border-radius: 50%;
+              width: 80px;
+              height: 80px;
+              object-fit: contain;
+            }
+          }
+
+          & .removeBtn {
+            height: 100%;
+            cursor: pointer;
+            padding: 0 10px;
+            border: none;
+            background-color: white;
+            border-radius: 0 8px 8px 0;
+            position: absolute;
+            right: 0;
+            transform: translateX(100%);
+
+            &:hover {
+              background-color: rgb(246, 249, 191);
+            }
+          }
         }
-      }
-      & img {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
+
+        & .emptyCart {
+          background-color: #f2f1f164;
+          padding: 20px;
+          font-size: 20px;
+          font-weight: 600;
+          margin-top: 8rem;
+          letter-spacing: 3px;
+          text-align: center;
+          color: #494949;
+        }
       }
     }
   }

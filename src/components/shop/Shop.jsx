@@ -49,7 +49,6 @@ function Shop() {
   const uniqueCategories = [
     ...new Set(initialProducts.map((product) => product.category)),
   ];
-
   return (
     <>
       {!name ? (

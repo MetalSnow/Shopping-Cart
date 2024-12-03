@@ -19,7 +19,9 @@ export function CartProvider({ children }) {
 
   const removeFromCart = (item) => {
     const newCart = cart.filter((product) => product.id !== item.id);
+    const newValues = values.filter((value) => value.id !== item.id);
     setCart(newCart);
+    setValues(newValues);
     setCounter(newCart.length);
   };
 

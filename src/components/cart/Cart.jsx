@@ -6,9 +6,8 @@ import { CartContext } from '../../context/CartContext';
 import CounterInput from '../shop/CounterInput';
 
 function Cart() {
-  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
-  const { values, removeFromCart } = useContext(CartContext);
+  const { cart, values, removeFromCart } = useContext(CartContext);
 
   return (
     <section className={styles.mainContainer}>
@@ -19,25 +18,31 @@ function Cart() {
         </header>
         <div className={styles.cartItems}>
           <ul>
-            {cart.map((item) => {
-              const obj = values.find(
-                (value) => value.id == item.id && value.quantity
-              );
-              const handleRemove = () => {
-                removeFromCart(item);
-              };
-              return (
-                <li key={item.id}>
-                  <img src={item.image} alt={item.title} />
-                  <p>{item.title}</p>
-                  <CounterInput value={obj.quantity} />
-                  <p>${item.price}</p>
-                  <button className={styles.removeBtn} onClick={handleRemove}>
-                    <X />
-                  </button>
-                </li>
-              );
-            })}
+            {cart ? (
+              <p className={styles.emptyCart}>Your Cart is Empty</p>
+            ) : (
+              cart.map((item) => {
+                const obj = values.find(
+                  (value) => value.id == item.id && value.quantity
+                );
+                const handleRemove = () => {
+                  removeFromCart(item);
+                };
+                return (
+                  <li key={item.id}>
+                    <div className={styles.imgContainer}>
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <p className={styles.title}>{item.title}</p>
+                    <CounterInput value={obj.quantity} />
+                    <p>${item.price}</p>
+                    <button className={styles.removeBtn} onClick={handleRemove}>
+                      <X strokeWidth={1.5} />
+                    </button>
+                  </li>
+                );
+              })
+            )}
           </ul>
         </div>
         <div className={styles.subTotal}>
