@@ -70,7 +70,7 @@ function Cart() {
         </div>
       </div>
       <div className={styles.checkoutContainer}>
-        <div>
+        <div className={styles.info}>
           <h2>
             Personal Info <UserRoundPen />
           </h2>
@@ -105,9 +105,16 @@ function Cart() {
           </label>
           <label htmlFor="cvv">
             CVV
-            <input type="phone" id="cvv" />
+            <input type="phone" id="cvv" style={{ width: 60 }} />
           </label>
         </div>
+        <button
+          onClick={() =>
+            alert('Order confirmed! Your items will be shipped soon.')
+          }
+        >
+          Checkout
+        </button>
       </div>
     </section>
   );
