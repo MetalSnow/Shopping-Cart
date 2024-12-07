@@ -1,6 +1,7 @@
 import { Store } from 'lucide-react';
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
+// import LogoIcon from '../LogoIcon';
 
 function NavBar() {
   return (
@@ -20,7 +21,11 @@ function NavBar() {
         </li>
         <li>
           <Link to="https://github.com/MetalSnow" target="_blank">
-            About
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+              alt="GitHub-Logo"
+              className={styles.gitHubLogo}
+            />
           </Link>
         </li>
       </ul>
