@@ -46,3 +46,31 @@ body {
     gap: 5px;
   }
 }
+
+dialog {
+  position: relative;
+  border: none;
+  border-radius: 9px;
+  padding: 30px 50px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+
+  & button {
+    position: absolute;
+    top: 6%;
+    right: 3%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+
+    & :hover {
+      color: #770808;
+    }
+  }
+
+  &::backdrop {
+    background-color: #000000b1;
+    opacity: 0.75;
+  }
+}

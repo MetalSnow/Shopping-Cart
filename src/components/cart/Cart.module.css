@@ -253,6 +253,10 @@
           margin: 0;
         }
 
+        & input:focus {
+          border-bottom: 1px solid yellow;
+        }
+
         & p {
           margin: 0;
         }
@@ -281,10 +285,6 @@
         & span {
           color: white;
           font-size: 18px;
-        }
-
-        & input:focus {
-          border-bottom: 2px solid yellow;
         }
       }
     }

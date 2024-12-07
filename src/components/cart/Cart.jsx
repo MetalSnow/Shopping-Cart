@@ -1,3 +1,9 @@
+import styles from './Cart.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../context/CartContext';
+import CounterInput from '../shop/CounterInput';
+import Modal from '../Modal';
 import {
   CreditCard,
   MoveLeft,
@@ -5,20 +11,29 @@ import {
   UserRoundPen,
   X,
 } from 'lucide-react';
-import styles from './Cart.module.css';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
-import CounterInput from '../shop/CounterInput';
 
 function Cart() {
   const navigate = useNavigate();
   const { cart, values, removeFromCart } = useContext(CartContext);
+  const [modal, setModal] = useState(false);
 
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setModal(true);
+  };
+
+  const handleClose = () => {
+    setModal(false);
+    if (cart.length !== 0) {
+      navigate('/');
+      window.location.reload();
+    }
+  };
 
   return (
     <section className={styles.mainContainer}>
@@ -65,57 +80,64 @@ function Cart() {
             Back To Shop
           </button>
           <p>
-            Subtotal: <span>$ {subtotal}</span>
+            Subtotal: <span>$ {Math.round(subtotal * 100) / 100}</span>
           </p>
         </div>
       </div>
-      <div className={styles.checkoutContainer}>
+      <form className={styles.checkoutContainer} onSubmit={handleSubmit}>
         <div className={styles.info}>
           <h2>
             Personal Info <UserRoundPen />
           </h2>
           <label htmlFor="fullName">
             Full Name
-            <input type="text" id="fullName" />
+            <input type="text" id="fullName" required />
           </label>
           <label htmlFor="address">
             Address
-            <input type="text" id="address" />
+            <input type="text" id="address" required />
           </label>
           <label htmlFor="phoneNumber">
             Phone Number
-            <input type="phone" id="phoneNumber" />
+            <input type="phone" id="phoneNumber" required />
           </label>
           <h2>
             Card Details <CreditCard />
           </h2>
           <label htmlFor="cardNumber">
             Card Number
-            <input type="text" id="cardNumber" />
+            <input type="text" id="cardNumber" required />
           </label>
           <label htmlFor="expiryDate" className={styles.expiryDate}>
             Expiry Date
             <p>
-              <input type="number" maxLength="2" placeholder="MM" />
+              <input type="number" maxLength="2" placeholder="MM" required />
               <span>/</span>
-              <input type="number" maxLength="2" placeholder="DD" />
+              <input type="number" maxLength="2" placeholder="DD" required />
               <span>/</span>
-              <input type="number" maxLength="3" placeholder="YYYY" />
+              <input type="number" maxLength="3" placeholder="YYYY" required />
             </p>
           </label>
           <label htmlFor="cvv">
             CVV
-            <input type="phone" id="cvv" style={{ width: 60 }} />
+            <input type="phone" id="cvv" style={{ width: 60 }} required />
           </label>
         </div>
-        <button
-          onClick={() =>
-            alert('Order confirmed! Your items will be shipped soon.')
-          }
-        >
-          Checkout
-        </button>
-      </div>
+        <button>Checkout</button>
+      </form>
+      <Modal openModal={modal} closeModal={handleClose}>
+        {cart.length !== 0 ? (
+          <>
+            <h2>Thank you for your purchase! 🎉</h2>
+            <p>Your order has been successfully placed.</p>
+          </>
+        ) : (
+          <>
+            <h2>Your cart is currently empty.</h2>
+            <p> 🛒 Add some items to your cart and come back to checkout.</p>
+          </>
+        )}
+      </Modal>
     </section>
   );
 }
