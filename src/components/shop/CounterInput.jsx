@@ -1,31 +1,65 @@
 import PropTypes from 'prop-types';
 import styles from './Shop.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../context/CartContext';
 
-function CounterInput({ value, setValue }) {
+function CounterInput({ value, setValue, itemId }) {
+  const { setCart, cart } = useContext(CartContext);
   const [newValue, setNewValue] = useState(value);
+
+  const currentItem = itemId
+    ? cart.filter((item) => item.id === itemId)[0]
+    : false;
+
+  console.log(currentItem);
+
   const handleInputValue = (e) => {
-    const newValue = Number(e.target.value);
+    const updatedValue = Number(e.target.value);
     if (newValue >= 0 && newValue <= 99) {
       if (setValue) {
-        setValue(newValue);
+        setValue(updatedValue);
       }
-      setNewValue(newValue);
+      setNewValue(updatedValue);
+
+      if (currentItem) {
+        const updatedItem = { ...currentItem, quantity: updatedValue };
+        setCart((prevCart) =>
+          prevCart.map((item) => (item.id === itemId ? updatedItem : item))
+        );
+      }
     }
   };
 
   const handleIncremet = () => {
+    const updatedValue = Math.min(newValue + 1, 99);
+
     if (setValue) {
-      setValue((prev) => Math.min(prev + 1, 99));
+      setValue(updatedValue);
     }
-    setNewValue((prev) => Math.min(prev + 1, 99));
+    setNewValue(updatedValue);
+
+    if (currentItem) {
+      const updatedItem = { ...currentItem, quantity: updatedValue };
+      setCart((prevCart) =>
+        prevCart.map((item) => (item.id === itemId ? updatedItem : item))
+      );
+    }
   };
 
   const handleDecremet = () => {
+    const updatedValue = Math.max(newValue - 1, 1);
+
     if (setValue) {
-      setValue((prev) => Math.max(prev - 1, 1));
+      setValue(updatedValue);
     }
-    setNewValue((prev) => Math.max(prev - 1, 1));
+    setNewValue(updatedValue);
+
+    if (currentItem) {
+      const updatedItem = { ...currentItem, quantity: updatedValue };
+      setCart((prevCart) =>
+        prevCart.map((item) => (item.id === itemId ? updatedItem : item))
+      );
+    }
   };
 
   return (
@@ -52,6 +86,7 @@ function CounterInput({ value, setValue }) {
 CounterInput.propTypes = {
   value: PropTypes.number.isRequired,
   setValue: PropTypes.func,
+  itemId: PropTypes.number,
 };
 
 export default CounterInput;

@@ -60,7 +60,7 @@ function Cart() {
                       <img src={item.image} alt={item.title} />
                     </div>
                     <p className={styles.title}>{item.title}</p>
-                    <CounterInput value={obj.quantity} />
+                    <CounterInput value={obj.quantity} itemId={item.id} />
                     <p>${item.price}</p>
                     <button className={styles.removeBtn} onClick={handleRemove}>
                       <X strokeWidth={1.5} />
